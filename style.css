@@ -1,142 +1,76 @@
-/* Reset */
-* {
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #f8bbd0, #e1bee7);
+  text-align: center;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
 }
 
-body {
-  background: linear-gradient(to bottom right, #f3e7ff, #fce1f5);
-  color: #333;
-  min-height: 100vh;
+h1 {
+  color: #4a148c;
+  margin-bottom: 20px;
 }
 
-header.app-header {
-  background: #a36acb;
+nav {
+  background: #ba68c8;
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
   color: white;
-  padding: 1rem;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.brand {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.nav {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.tab-btn, .logout-btn {
-  background: white;
-  color: #5e3b8e;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  cursor: pointer;
+  text-decoration: none;
   font-weight: bold;
 }
 
-.tab-btn:hover, .logout-btn:hover {
-  background: #fce1f5;
+.screen {
+  display: none;
+  padding: 20px;
 }
 
-.container {
-  margin-top: 80px;
-  padding: 1rem;
-}
-
-.card {
-  background: #fff;
-  padding: 1rem;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  margin-bottom: 1rem;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.label {
+.screen.active {
   display: block;
-  margin: 8px 0 4px;
-  font-weight: 600;
 }
 
-input, select {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-button.primary {
-  background: #a36acb;
-  color: white;
+button {
+  background: #ce93d8;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 10px 20px;
+  margin: 10px;
   border-radius: 8px;
   cursor: pointer;
-  margin-right: 5px;
+  font-weight: bold;
 }
 
-button.primary:hover {
-  background: #8b55b0;
-}
-
-button.ghost {
-  background: #eee;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button.danger {
-  background: #d9534f;
+button:hover {
+  background: #ab47bc;
   color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
 }
 
-.list {
-  margin-top: 10px;
-}
-
-.list div, .list li {
-  background: #f9f2ff;
+input {
   padding: 8px;
-  margin-bottom: 5px;
-  border-radius: 8px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
-.foto-igreja, .foto-biblia {
-  width: 100%;
-  max-width: 400px;
-  margin: 10px auto;
+.hidden {
+  display: none;
+}
+
+.church-img, .bible-img {
+  max-width: 250px;
+  margin: 15px auto;
   display: block;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
-
-.versiculo {
-  font-style: italic;
-  margin-top: 10px;
-  text-align: center;
-  color: #5e3b8e;
-  font-weight: 500;
-}
-

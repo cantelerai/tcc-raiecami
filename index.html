@@ -1,147 +1,59 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Igreja Assembleia</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Igreja</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
-  <header class="app-header">
-    <div class="brand"> Igreja Assembleia</div>
-    <nav id="nav" class="nav" style="display:none;">
-      <button class="tab-btn" data-tab="tab-eventos">Eventos</button>
-      <button class="tab-btn" data-tab="tab-minhaescala">Minha Escala</button>
-      <button class="tab-btn" data-tab="tab-sobre">Sobre</button>
-      <button id="tab-membros-btn" class="tab-btn" data-tab="tab-membros" style="display:none;">Membros & Escalas</button>
-      <button id="logoutBtn" class="logout-btn">Sair</button>
-    </nav>
-  </header>
+  <!-- Tela de Login -->
+  <div id="loginScreen" class="screen active">
+    <h1>Login</h1>
+    <button onclick="login('membro')">Entrar como Membro</button>
+    <button onclick="login('lider')">Entrar como Líder</button>
+  </div>
 
-  <!-- Container -->
-  <main class="container">
+  <!-- Menu -->
+  <nav id="menu" class="hidden">
+    <ul id="menuItems"></ul>
+  </nav>
 
-    <!-- LOGIN -->
-    <section id="login-screen" class="card auth-card">
-      <h1>Login</h1>
-      <label class="label">Seu nome</label>
-      <input type="text" id="username" placeholder="Ex.: Raiany" />
-      <label class="label">Papel</label>
-      <select id="user-role">
-        <option value="membro">Membro</option>
-        <option value="lider">Líder</option>
-      </select>
-      <button class="primary" id="loginBtn">Entrar</button>
-    </section>
-
-    <!-- DASHBOARD -->
-    <section id="dashboard" style="display:none;">
-
-      <!-- TAB: EVENTOS -->
-      <div id="tab-eventos" class="tab">
-        <div class="grid">
-          <div class="card">
-            <div class="card-header">
-              <h2>📅 Próximos Eventos</h2>
-              <input id="busca-evento" class="search" placeholder="Buscar por título ou pregador..."/>
-            </div>
-            <div id="event-list" class="list"></div>
-          </div>
-
-          <!-- Área do líder -->
-          <div id="admin-eventos" class="card" style="display:none;">
-            <h2>➕ Adicionar/Editar Evento</h2>
-            <input type="hidden" id="evento-id" />
-            <label class="label">Título</label>
-            <input type="text" id="evento-titulo" placeholder="Ex.: Culto de Jovens" />
-            <label class="label">Data</label>
-            <input type="date" id="evento-data" />
-            <label class="label">Pregador</label>
-            <input type="text" id="evento-pregador" placeholder="Ex.: Pr. João" />
-            <div class="row">
-              <button class="primary" id="salvarEventoBtn">Salvar</button>
-              <button class="ghost" id="cancelarEdicaoBtn">Cancelar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB: MINHA ESCALA -->
-      <div id="tab-minhaescala" class="tab" style="display:none;">
-        <div class="card">
-          <h2>🗓️ Minha Escala</h2>
-          <div id="minha-escala-list" class="list"></div>
-        </div>
-      </div>
-
-      <!-- TAB: MEMBROS & ESCALAS -->
-      <div id="tab-membros" class="tab" style="display:none;">
-        <div class="grid">
-          <div class="card">
-            <h2>👥 Membros & Líderes</h2>
-            <div class="row">
-              <input type="text" id="membro-nome" placeholder="Nome do membro" />
-              <select id="membro-tipo">
-                <option value="membro">Membro</option>
-                <option value="lider">Líder</option>
-              </select>
-              <button class="primary" id="addMembroBtn">Adicionar</button>
-            </div>
-            <div id="membro-list" class="list"></div>
-          </div>
-
-          <div class="card">
-            <h2>🧾 Escalas de Ministérios</h2>
-            <div class="row">
-              <select id="escala-membro"></select>
-              <input type="text" id="escala-tarefa" placeholder="Tarefa / Ministério (ex.: Louvor, Recepção)" />
-              <button class="primary" id="addEscalaBtn">Adicionar</button>
-            </div>
-            <div id="escala-list" class="list"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB: SOBRE -->
-      <div id="tab-sobre" class="tab" style="display:none;">
-        <div class="card">
-          <h2>📍 Localização da Igreja</h2>
-          <iframe 
-            src="https://www.google.com/maps/place/R.+Nossa+Sra.+do+Perp%C3%A9tuo+Socorro,+322+-+Costeira,+Arauc%C3%A1ria+-+PR,+83709-040/@-25.594214,-49.3621155,17z/data=!3m1!4b1!4m6!3m5!1s0x94dcfdfec32a3ced:0x1948f757b3430e3b!8m2!3d-25.594214!4d-49.3621155!16s%2Fg%2F11qzgm3c8j?entry=ttu&g_ep=EgoyMDI1MDkwOS4wIKXMDSoASAFQAw%3D%3D"
-            width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-
-        <div class="card">
-          <h2>🏠 Nossa Igreja</h2>
-          <img src="igreja.png" alt="Foto da Igreja" class="foto-igreja"/>
-        </div>
-
-        <div class="card">
-          <h2>📖 Versículo do Dia</h2>
-          <img src="img/biblia.jpg" alt="Bíblia Sagrada" class="foto-biblia"/>
-          <p id="versiculo-dia" class="versiculo"></p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Toasts -->
-  <div id="toast" class="toast"></div>
-
-  <!-- Modal -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <h3 id="modal-title">Confirmar ação</h3>
-      <p id="modal-msg">Tem certeza?</p>
-      <div class="row">
-        <button class="danger" id="modal-confirm">Confirmar</button>
-        <button class="ghost" id="modal-cancel">Cancelar</button>
-      </div>
+  <!-- Conteúdos -->
+  <div id="eventos" class="screen">
+    <h1>Eventos</h1>
+    <ul id="eventList"></ul>
+    <div id="eventForm" class="hidden">
+      <input type="text" id="eventName" placeholder="Nome do evento">
+      <input type="date" id="eventDate">
+      <input type="text" id="eventPreacher" placeholder="Quem vai pregar">
+      <button onclick="addEvent()">Adicionar Evento</button>
     </div>
+  </div>
+
+  <div id="escala" class="screen">
+    <h1>Minha Escala</h1>
+    <ul id="escalaList"></ul>
+  </div>
+
+  <div id="membros" class="screen">
+    <h1>Membros</h1>
+    <ul id="memberList"></ul>
+    <input type="text" id="newMember" placeholder="Novo membro">
+    <button onclick="addMember()">Adicionar Membro</button>
+  </div>
+
+  <div id="sobre" class="screen">
+    <h1>Sobre a Igreja</h1>
+    <img src="igreja.png" alt="Igreja" class="church-img">
+    <p><strong>Endereço:</strong> Rua Nossa Senhora do Perpétuo Socorro, 322</p>
+    <iframe 
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-sUAo0SyLOeGrjN7EvZzMku6Gm5vN0h0&q=Rua+Nossa+Senhora+do+Perpétuo+Socorro,322" 
+      width="100%" height="250" style="border:0;" allowfullscreen>
+    </iframe>
+    <img src="pn" alt="Bíblia" class="bible-img">
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
