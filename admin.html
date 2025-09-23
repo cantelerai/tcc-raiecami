@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Igreja Assembleia</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #f5f7fa; margin:0; padding:20px; }
+    h1 { color: #3a6ea5; margin-bottom: 20px; }
+    label { display:block; margin-top: 10px; font-weight: bold; }
+    input, textarea { width: 100%; padding: 10px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
+    button { margin-top: 15px; padding: 10px 20px; background:#3a6ea5; color:white; border:none; border-radius:5px; cursor:pointer; }
+    button:hover { background:#2c5282; }
+    .section { margin-bottom: 30px; padding:15px; background:white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
+</style>
+</head>
+<body>
+
+<h1>Painel de Administração</h1>
+
+<div class="section">
+    <h2>Informações de Contato</h2>
+    <label>Endereço:</label>
+    <input type="text" id="contactAddress">
+    <label>Telefone:</label>
+    <input type="text" id="contactPhone">
+    <label>E-mail:</label>
+    <input type="email" id="contactEmail">
+</div>
+
+<div class="section">
+    <h2>PIX</h2>
+    <label>Chave PIX:</label>
+    <input type="text" id="pixKeyInput">
+</div>
+
+<div class="section">
+    <h2>Eventos</h2>
+    <label>Eventos (JSON):</label>
+    <textarea id="eventsInput" rows="6" placeholder='Exemplo: [{"date":"20 Set","title":"Culto da Unaadar","time":"19:00 - 21:30","location":"Igreja Assembleia Sede"}]'></textarea>
+</div>
+
+<div class="section">
+    <h2>Ministérios</h2>
+    <label>Ministérios (JSON):</label>
+    <textarea id="ministriesInput" rows="6" placeholder='Exemplo: [{"name":"Ministério de Louvor","description":"Responsável pela música e adoração","icon":"fas fa-music"}]'></textarea>
+</div>
+
+<button onclick="saveData()">Salvar Alterações</button>
+
+<script>
+    // Função para salvar dados no localStorage
+    function saveData() {
+        const contact = {
+            address: document.getElementById('contactAddress').value,
+            phone: document.getElementById('contactPhone').value,
+            email: document.getElementById('contactEmail').value
+        };
+        const pix = document.getElementById('pixKeyInput').value;
+        const events = document.getElementById('eventsInput').value;
+        const ministries = document.getElementById('ministriesInput').value;
+
+        localStorage.setItem('church_contact', JSON.stringify(contact));
+        localStorage.setItem('church_pix', pix);
+        localStorage.setItem('church_events', events);
+        localStorage.setItem('church_ministries', ministries);
+
+        alert('Informações salvas com sucesso!');
+    }
+
+    // Função para carregar os dados quando abrir o admin
+    window.onload = function() {
+        const contact = JSON.parse(localStorage.getItem('church_contact'));
+        const pix = localStorage.getItem('church_pix');
+        const events = localStorage.getItem('church_events');
+        const ministries = localStorage.getItem('church_ministries');
+
+        if(contact) {
+            document.getElementById('contactAddress').value = contact.address;
+            document.getElementById('contactPhone').value = contact.phone;
+            document.getElementById('contactEmail').value = contact.email;
+        }
+        if(pix) document.getElementById('pixKeyInput').value = pix;
+        if(events) document.getElementById('eventsInput').value = events;
+        if(ministries) document.getElementById('ministriesInput').value = ministries;
+    }
+</script>
+
+</body>
+</html>

@@ -387,7 +387,86 @@
                     </div>
                 </div>
             </div>
-            
+            <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // --- Dados de contato ---
+    const contact = JSON.parse(localStorage.getItem('church_contact'));
+    if(contact) {
+        document.querySelectorAll('.contact-info p').forEach(p => {
+            if(p.innerHTML.includes('(41)') && contact.phone) p.innerHTML = `<i class="fas fa-phone"></i> ${contact.phone}`;
+            if(p.innerHTML.includes('gmail') && contact.email) p.innerHTML = `<i class="fas fa-envelope"></i> ${contact.email}`;
+            if(p.innerHTML.includes('Rua')) p.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${contact.address}`;
+        });
+
+        document.querySelectorAll('.contact-info p strong').forEach(p => {
+            if(p.innerHTML.includes('Segunda')) return; // não mexe nos horários
+        });
+
+        document.querySelectorAll('.donation-method p').forEach(p => {
+            if(p.innerHTML.includes('Rua') && contact.address) {
+                p.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${contact.address}`;
+            }
+        });
+    }
+
+    // --- Chave PIX ---
+    const pix = localStorage.getItem('church_pix');
+    if(pix) {
+        const pixDiv = document.getElementById('pixKey');
+        if(pixDiv) pixDiv.textContent = pix;
+    }
+
+    // --- Eventos ---
+    const events = localStorage.getItem('church_events');
+    if(events) {
+        const eventsGrid = document.querySelector('.events-grid');
+        if(eventsGrid) {
+            eventsGrid.innerHTML = ''; // Limpa eventos existentes
+            try {
+                const eventsArr = JSON.parse(events);
+                eventsArr.forEach(ev => {
+                    const card = document.createElement('div');
+                    card.classList.add('event-card');
+                    card.innerHTML = `
+                        <div class="event-date">
+                            <h3>${ev.date.split(' ')[0]} <span>${ev.date.split(' ')[1]}</span></h3>
+                        </div>
+                        <div class="event-content">
+                            <h3>${ev.title}</h3>
+                            <p><i class="far fa-clock"></i> ${ev.time}</p>
+                            <p><i class="fas fa-map-marker-alt"></i> ${ev.location}</p>
+                        </div>`;
+                    eventsGrid.appendChild(card);
+                });
+            } catch(e) { console.error('Erro ao ler eventos do localStorage', e); }
+        }
+    }
+
+    // --- Ministérios ---
+    const ministries = localStorage.getItem('church_ministries');
+    if(ministries) {
+        const featuresGrid = document.querySelector('.features-grid');
+        if(featuresGrid) {
+            featuresGrid.innerHTML = '';
+            try {
+                const ministriesArr = JSON.parse(ministries);
+                ministriesArr.forEach(min => {
+                    const card = document.createElement('div');
+                    card.classList.add('feature-card');
+                    card.innerHTML = `
+                        <div class="feature-icon"><i class="${min.icon}"></i></div>
+                        <div class="feature-content">
+                            <h3>${min.name}</h3>
+                            <p>${min.description}</p>
+                        </div>`;
+                    featuresGrid.appendChild(card);
+                });
+            } catch(e) { console.error('Erro ao ler ministérios do localStorage', e); }
+        }
+    }
+});
+</script>
+
             <div class="footer-bottom">
                 <p>&copy; Igreja Assembleia de Deus - Araucária. Todos os direitos reservados.</p>
             </div>
