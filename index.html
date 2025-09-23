@@ -3,18 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Administrativo - Igreja</title>
+    <title>Igreja Assembleia - Gralha Azul</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #e67e22;
-            --danger-color: #e74c3c;
-            --success-color: #2ecc71;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-        }
-        
+        /* Reset e estilos base */
         * {
             margin: 0;
             padding: 0;
@@ -24,790 +16,981 @@
         
         body {
             background-color: #f5f7fa;
-            color: var(--dark-color);
+            color: #333;
+            line-height: 1.6;
         }
         
-        .admin-container {
-            display: flex;
-            min-height: 100vh;
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
         
-        .sidebar {
-            width: 280px;
-            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 20px 0;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        a {
+            text-decoration: none;
+            color: inherit;
         }
         
-        .sidebar-header {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .sidebar-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        
-        .sidebar-header p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        .sidebar-menu {
+        ul {
             list-style: none;
         }
         
-        .sidebar-menu li {
-            margin-bottom: 5px;
+        img {
+            max-width: 100%;
+            height: auto;
         }
         
-        .sidebar-menu a {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #3a6ea5;
             color: white;
-            text-decoration: none;
-            transition: all 0.3s;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
         
-        .sidebar-menu a i {
-            margin-right: 10px;
-            font-size: 1.2rem;
+        .btn:hover {
+            background-color: #2c5282;
+            transform: translateY(-2px);
         }
         
-        .sidebar-menu a:hover, .sidebar-menu a.active {
-            background-color: rgba(255,255,255,0.1);
-            border-left: 4px solid var(--accent-color);
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #3a6ea5;
+            color: #3a6ea5;
         }
         
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
+        .btn-outline:hover {
+            background-color: #3a6ea5;
+            color: white;
         }
         
-        .header {
+        .btn-secondary {
+            background-color: #718096;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #4a5568;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-top: 30px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3a6ea5;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #3a6ea5;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
             margin-bottom: 30px;
-            padding: 15px 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .header h1 {
-            font-size: 1.8rem;
-            color: var(--dark-color);
+        .hero-buttons .btn {
+            margin: 0 10px;
         }
         
-        .user-info {
+        /* About Section */
+        .about {
+            padding: 100px 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: #f7fafc;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #3a6ea5;
+            margin-bottom: 20px;
+        }
+        
+        .feature-content h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* Events Section */
+        .events {
+            padding: 100px 0;
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .event-card {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .event-date {
+            background-color: #3a6ea5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 100px;
+        }
+        
+        .event-date h3 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .event-date span {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .event-content {
+            padding: 20px;
+        }
+        
+        .event-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .event-content p {
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
         }
         
-        .user-info span {
-            margin-right: 15px;
+        .event-content i {
+            margin-right: 10px;
+            color: #3a6ea5;
         }
         
-        .logout-btn {
-            background-color: var(--danger-color);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        /* Sermons Section */
+        .sermons {
+            padding: 100px 0;
+            background-color: #f7fafc;
         }
         
-        .logout-btn:hover {
-            background-color: #c0392b;
+        .sermon-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
         }
         
-        .content-section {
-            background-color: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
+        .sermon-card {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .content-section h2 {
+        .sermon-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .sermon-content {
+            padding: 20px;
+            flex: 1;
+        }
+        
+        .sermon-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .sermon-content > p {
+            margin-bottom: 15px;
+        }
+        
+        .sermon-content p strong {
+            color: #3a6ea5;
+        }
+        
+        .sermon-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .sermon-actions .btn {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
             margin-bottom: 20px;
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-color);
+            font-size: 1.5rem;
+            color: #2d3748;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: #3a6ea5;
+            width: 20px;
+        }
+        
+        .contact-form h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #2d3748;
         }
         
         .form-group {
             margin-bottom: 20px;
         }
         
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
-        
-        .form-control {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
             border-radius: 4px;
+            font-family: inherit;
             font-size: 1rem;
-            transition: border 0.3s;
         }
         
-        .form-control:focus {
-            border-color: var(--accent-color);
+        .form-group input:focus,
+        .form-group textarea:focus {
             outline: none;
-            box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+            border-color: #3a6ea5;
+        }
+
+        /* Donation Section */
+        .donation {
+            padding: 100px 0;
+            background-color: #f7fafc;
+            text-align: center;
         }
         
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
+        .donation-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .btn {
-            padding: 12px 24px;
+        .donation-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .donation-method {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: 300px;
+            text-align: center;
+        }
+        
+        .donation-icon {
+            font-size: 3rem;
+            color: #3a6ea5;
+            margin-bottom: 20px;
+        }
+        
+        .pix-key {
+            background: #f1f7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        
+        .copy-btn {
+            margin-top: 10px;
+            background: #3a6ea5;
+            color: white;
             border: none;
+            padding: 8px 15px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #2c5282;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #3a6ea5;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            font-size: 18px;
         }
         
-        .btn i {
-            margin-right: 8px;
+        .social-links a:hover {
+            background-color: #3a6ea5;
+            transform: translateY(-3px);
         }
         
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: white;
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .btn-primary:hover {
-            background-color: #d35400;
-            transform: translateY(-2px);
-        }
-        
-        .btn-success {
-            background-color: var(--success-color);
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background-color: #27ae60;
-        }
-        
-        .image-preview {
-            max-width: 200px;
-            margin-top: 10px;
-            border: 1px solid #ddd;
-            padding: 5px;
-            border-radius: 4px;
-            display: block;
-        }
-        
-        .tab-container {
-            margin-top: 20px;
-        }
-        
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-        
-        .tab {
-            padding: 12px 24px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .tab.active {
-            border-bottom: 3px solid var(--accent-color);
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .alert {
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .alert i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        .event-item, .member-item {
-            background-color: var(--light-color);
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .event-actions, .member-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .btn-sm {
-            padding: 6px 12px;
-            font-size: 0.9rem;
-        }
-        
-        .btn-edit {
-            background-color: #3498db;
-            color: white;
-        }
-        
-        .btn-delete {
-            background-color: var(--danger-color);
-            color: white;
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .sermon-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .donation-methods {
+                flex-direction: column;
+                align-items: center;
+            }
         }
         
         @media (max-width: 768px) {
-            .admin-container {
+            .header-content {
+                position: relative;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
                 flex-direction: column;
             }
             
-            .sidebar {
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .sermon-card {
+                flex-direction: column;
+            }
+            
+            .sermon-img {
                 width: 100%;
-                height: auto;
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-buttons .btn {
+                display: block;
+                margin: 10px auto;
+                width: 200px;
             }
             
-            .sidebar-menu {
-                display: flex;
-                overflow-x: auto;
+            .section-title h2 {
+                font-size: 2rem;
             }
             
-            .sidebar-menu li {
-                flex-shrink: 0;
-                margin-bottom: 0;
-            }
-            
-            .form-row {
+            .sermon-actions {
                 flex-direction: column;
-                gap: 0;
+            }
+            
+            .pix-key {
+                font-size: 0.9rem;
+                padding: 10px;
             }
         }
-        
-        /* Ícones simulados */
-        .icon {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            background-color: currentColor;
-            mask-size: cover;
-        }
-        
-        .icon-home { mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E"); }
-        .icon-about { mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E"); }
-        .icon-events { mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z'/%3E%3C/svg%3E"); }
-        .icon-gallery { mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E"); }
-        .icon-members { mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A2.01 2.01 0 0 0 18.06 7h-1.24c-.77 0-1.45.45-1.76 1.15L12.5 15h-2.1l-1.5-4H5v10h2v-6h2v6h2v-6h2.5l.5 2h3l.5-2H18v6h2zm-6.5-8l1-3h1l1 3h-3zM6 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2z'/%3E%3C/svg%3E"); }
-        .icon-contact { mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E"); }
-        .icon-settings { mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z'/%3E%3C/svg%3E"); }
     </style>
 </head>
 <body>
-    <div class="admin-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <h2>Painel Administrativo</h2>
-                <p>Igreja - Site Institucional</p>
-            </div>
-            <ul class="sidebar-menu">
-                <li><a href="#" class="active" data-tab="home"><span class="icon icon-home"></span> Página Inicial</a></li>
-                <li><a href="#" data-tab="about"><span class="icon icon-about"></span> Sobre a Igreja</a></li>
-                <li><a href="#" data-tab="events"><span class="icon icon-events"></span> Eventos</a></li>
-                <li><a href="#" data-tab="gallery"><span class="icon icon-gallery"></span> Galeria</a></li>
-                <li><a href="#" data-tab="members"><span class="icon icon-members"></span> Liderança</a></li>
-                <li><a href="#" data-tab="contact"><span class="icon icon-contact"></span> Contato</a></li>
-                <li><a href="#" data-tab="settings"><span class="icon icon-settings"></span> Configurações</a></li>
-            </ul>
-        </div>
-        
-        <!-- Conteúdo Principal -->
-        <div class="main-content">
-            <div class="header">
-                <h1>Painel de Controle - Site da Igreja</h1>
-                <div class="user-info">
-                    <span>Administrador</span>
-                    <button class="logout-btn">Sair</button>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-church"></i>
+                    <span>Igreja Assembleia</span>
                 </div>
-            </div>
-            
-            <!-- Alertas -->
-            <div id="alert-area"></div>
-            
-            <!-- Conteúdo da Página Inicial -->
-            <div class="content-section tab-content active" id="home-content">
-                <h2>Página Inicial</h2>
-                
-                <div class="form-group">
-                    <label for="home-title">Título Principal</label>
-                    <input type="text" id="home-title" class="form-control" value="Igreja - Nome da Sua Igreja">
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#ministerios">Ministérios</a></li>
+                        <li><a href="#eventos">Eventos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#doacao">Doações</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="home-subtitle">Subtítulo</label>
-                    <input type="text" id="home-subtitle" class="form-control" value="Uma comunidade de fé, esperança e amor">
-                </div>
-                
-                <div class="form-group">
-                    <label for="home-welcome">Mensagem de Boas-Vindas</label>
-                    <textarea id="home-welcome" class="form-control">Seja bem-vindo à nossa igreja! Somos uma comunidade dedicada a servir a Deus e ao próximo. Participe de nossos cultos e atividades.</textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="home-service-times">Horários de Culto</label>
-                    <textarea id="home-service-times" class="form-control">Domingo: 9h - Escola Dominical
-Domingo: 10h30 - Culto Principal
-Quarta-feira: 19h30 - Culto de Oração</textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="home-image">Imagem de Destaque</label>
-                    <input type="file" id="home-image" class="form-control">
-                    <img src="" alt="Prévia da imagem" class="image-preview" id="home-image-preview">
-                </div>
-                
-                <button class="btn btn-primary" onclick="saveHomeContent()"><span class="icon icon-home"></span> Salvar Página Inicial</button>
-            </div>
-            
-            <!-- Conteúdo Sobre a Igreja -->
-            <div class="content-section tab-content" id="about-content">
-                <h2>Sobre a Igreja</h2>
-                
-                <div class="form-group">
-                    <label for="about-history">Nossa História</label>
-                    <textarea id="about-history" class="form-control">Nossa igreja foi fundada em [ano] com o propósito de [missão]. Ao longo dos anos, temos crescido e impactado nossa comunidade através do evangelho.</textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="about-mission">Nossa Missão</label>
-                    <textarea id="about-mission" class="form-control">Nossa missão é [descrição da missão da igreja]. Buscamos cumprir o Ide de Jesus, pregando o evangelho e servindo ao próximo.</textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="about-values">Nossos Valores</label>
-                    <textarea id="about-values" class="form-control">- Fé em Deus
-- Amor ao próximo
-- Compromisso com a verdade
-- Serviço à comunidade</textarea>
-                </div>
-                
-                <button class="btn btn-primary" onclick="saveAboutContent()"><span class="icon icon-about"></span> Salvar Sobre a Igreja</button>
-            </div>
-            
-            <!-- Conteúdo Eventos -->
-            <div class="content-section tab-content" id="events-content">
-                <h2>Gerenciar Eventos</h2>
-                
-                <div class="tab-container">
-                    <div class="tabs">
-                        <div class="tab active" data-event-tab="list">Eventos Programados</div>
-                        <div class="tab" data-event-tab="add">Adicionar Evento</div>
-                    </div>
-                    
-                    <div class="tab-content active" id="events-list">
-                        <div class="event-item">
-                            <div>
-                                <strong>Culto de Celebração</strong><br>
-                                <small>Domingo, 10h30 - 20/10/2023</small>
-                            </div>
-                            <div class="event-actions">
-                                <button class="btn btn-edit btn-sm">Editar</button>
-                                <button class="btn btn-delete btn-sm">Excluir</button>
-                            </div>
-                        </div>
-                        
-                        <div class="event-item">
-                            <div>
-                                <strong>Estudo Bíblico</strong><br>
-                                <small>Quarta-feira, 19h30 - 25/10/2023</small>
-                            </div>
-                            <div class="event-actions">
-                                <button class="btn btn-edit btn-sm">Editar</button>
-                                <button class="btn btn-delete btn-sm">Excluir</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="events-add">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="event-title">Título do Evento</label>
-                                <input type="text" id="event-title" class="form-control">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="event-date">Data do Evento</label>
-                                <input type="date" id="event-date" class="form-control">
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="event-time">Horário</label>
-                                <input type="time" id="event-time" class="form-control">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="event-location">Local</label>
-                                <input type="text" id="event-location" class="form-control" value="Igreja">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="event-description">Descrição do Evento</label>
-                            <textarea id="event-description" class="form-control"></textarea>
-                        </div>
-                        
-                        <button class="btn btn-success" onclick="addEvent()"><span class="icon icon-events"></span> Adicionar Evento</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Conteúdo Galeria -->
-            <div class="content-section tab-content" id="gallery-content">
-                <h2>Galeria de Fotos</h2>
-                
-                <div class="form-group">
-                    <label for="gallery-images">Adicionar Fotos à Galeria</label>
-                    <input type="file" id="gallery-images" class="form-control" multiple>
-                    <small>Selecione várias imagens mantendo a tecla Ctrl pressionada</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="gallery-description">Descrição da Galeria</label>
-                    <textarea id="gallery-description" class="form-control">Confira os momentos especiais da nossa comunidade de fé.</textarea>
-                </div>
-                
-                <button class="btn btn-primary" onclick="saveGalleryContent()"><span class="icon icon-gallery"></span> Atualizar Galeria</button>
-            </div>
-            
-            <!-- Conteúdo Liderança -->
-            <div class="content-section tab-content" id="members-content">
-                <h2>Liderança da Igreja</h2>
-                
-                <div class="tab-container">
-                    <div class="tabs">
-                        <div class="tab active" data-member-tab="list">Membros da Liderança</div>
-                        <div class="tab" data-member-tab="add">Adicionar Líder</div>
-                    </div>
-                    
-                    <div class="tab-content active" id="members-list">
-                        <div class="member-item">
-                            <div>
-                                <strong>Pastor João Silva</strong><br>
-                                <small>Pastor Titular</small>
-                            </div>
-                            <div class="member-actions">
-                                <button class="btn btn-edit btn-sm">Editar</button>
-                                <button class="btn btn-delete btn-sm">Excluir</button>
-                            </div>
-                        </div>
-                        
-                        <div class="member-item">
-                            <div>
-                                <strong>Maria Santos</strong><br>
-                                <small>Diaconisa</small>
-                            </div>
-                            <div class="member-actions">
-                                <button class="btn btn-edit btn-sm">Editar</button>
-                                <button class="btn btn-delete btn-sm">Excluir</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="members-add">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="member-name">Nome Completo</label>
-                                <input type="text" id="member-name" class="form-control">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="member-role">Cargo/Função</label>
-                                <input type="text" id="member-role" class="form-control">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="member-description">Descrição/Biografia</label>
-                            <textarea id="member-description" class="form-control"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="member-photo">Foto</label>
-                            <input type="file" id="member-photo" class="form-control">
-                            <img src="" alt="Prévia da foto" class="image-preview" id="member-photo-preview">
-                        </div>
-                        
-                        <button class="btn btn-success" onclick="addMember()"><span class="icon icon-members"></span> Adicionar Líder</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Conteúdo Contato -->
-            <div class="content-section tab-content" id="contact-content">
-                <h2>Informações de Contato</h2>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="contact-address">Endereço</label>
-                        <input type="text" id="contact-address" class="form-control" value="Rua Exemplo, 123 - Centro">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contact-city">Cidade/Estado</label>
-                        <input type="text" id="contact-city" class="form-control" value="Cidade - Estado">
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="contact-phone">Telefone</label>
-                        <input type="text" id="contact-phone" class="form-control" value="(11) 99999-9999">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contact-email">E-mail</label>
-                        <input type="email" id="contact-email" class="form-control" value="contato@igreja.com">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="contact-map">Link do Google Maps (embed)</label>
-                    <textarea id="contact-map" class="form-control" placeholder="Cole aqui o código de incorporação do Google Maps"></textarea>
-                </div>
-                
-                <button class="btn btn-primary" onclick="saveContactContent()"><span class="icon icon-contact"></span> Salvar Contato</button>
-            </div>
-            
-            <!-- Configurações -->
-            <div class="content-section tab-content" id="settings-content">
-                <h2>Configurações do Site</h2>
-                
-                <div class="form-group">
-                    <label for="site-title">Título do Site</label>
-                    <input type="text" id="site-title" class="form-control" value="Igreja - Nome da Sua Igreja">
-                </div>
-                
-                <div class="form-group">
-                    <label for="site-description">Descrição do Site (SEO)</label>
-                    <textarea id="site-description" class="form-control">Site oficial da Igreja [Nome]. Uma comunidade de fé, esperança e amor.</textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="site-logo">Logo do Site</label>
-                    <input type="file" id="site-logo" class="form-control">
-                    <img src="" alt="Prévia do logo" class="image-preview" id="site-logo-preview">
-                </div>
-                
-                <div class="form-group">
-                    <label for="site-theme">Tema de Cores</label>
-                    <select id="site-theme" class="form-control">
-                        <option value="default">Padrão (Azul/Laranja)</option>
-                        <option value="green">Verde</option>
-                        <option value="purple">Roxo</option>
-                        <option value="red">Vermelho</option>
-                    </select>
-                </div>
-                
-                <button class="btn btn-primary" onclick="saveSettings()"><span class="icon icon-settings"></span> Salvar Configurações</button>
             </div>
         </div>
-    </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Igreja Assembleia de Deus - Gralha Azul</h1>
+                <p>Rua Nossa Senhora do Perpétuo Socorro, 322 - Bairro Costeira - Araucária</p>
+                <div class="hero-buttons">
+                    <a href="#contato" class="btn">Visite-nos</a>
+                    <a href="#eventos" class="btn btn-outline">Próximos Eventos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossa História</h2>
+                <p>Conheça um pouco sobre nossa igreja e nossa missão</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>A Igreja Assembleia de Deus em Araucária tem como missão servir a comunidade local, pregando o Evangelho de Jesus Cristo e promovendo o crescimento espiritual de seus membros.</p>
+                    <p>Nossa congregação está localizada no Bairro Costeira e temos orgulho de fazer parte desta comunidade há vários anos.</p>
+                    <p>Estamos comprometidos com os valores cristãos e com o bem-estar espiritual de todos que buscam a Deus.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Igreja">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="ministerios" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Ministérios</h2>
+                <p>Conheça as diferentes formas de se conectar e servir em nossa comunidade</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Ministério de Acolhimento</h3>
+                        <p>Voltado para receber novos membros e integrá-los à comunidade.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Ministério de Louvor</h3>
+                        <p>Responsável pela música e adoração em nossos cultos.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Ministério Social</h3>
+                        <p>Desenvolve projetos de assistência e apoio à comunidade local.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events -->
+    <section id="eventos" class="events">
+        <div class="container">
+            <div class="section-title">
+                <h2>Próximos Eventos</h2>
+                <p>Participe de nossas celebrações e atividades</p>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">
+                        <h3>20 <span>Set</span></h3>
+                    </div>
+                    <div class="event-content">
+                        <h3>Culto da Unaadar</h3>
+                        <p><i class="far fa-clock"></i> 19:00 - 21:30</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Igreja Assembleia Sede</p>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-date">
+                        <h3>03 a 05 <span>Out</span></h3>
+                    </div>
+                    <div class="event-content">
+                        <h3>Congresso Unaadar</h3>
+                        <p><i class="far fa-clock"></i> 19:00 - 21:30</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Igreja Assembleia Sede</p>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-date">
+                        <h3>12 <span>Out</span></h3>
+                    </div>
+                    <div class="event-content">
+                        <h3>Congresso Kids</h3>
+                        <p><i class="far fa-clock"></i> 09:00 - 16:00</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Igreja Assembleia Gralha Azul</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sermons -->
+    <section class="sermons">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pregações Recentes</h2>
+                <p>Assista ou ouça nossas mensagens mais recentes</p>
+            </div>
+            
+            <div class="sermon-list">
+                <div class="sermon-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Pastor" class="sermon-img">
+                    <div class="sermon-content">
+                        <h3>A Fé em Tempos de Incerteza</h3>
+                        <p><strong>Pastor João Silva</strong> | 18 de Junho, 2023</p>
+                        <p>Uma mensagem sobre como manter a fé em meio às adversidades da vida.</p>
+                        <div class="sermon-actions">
+                          <a href="https://youtu.be/1OSIXF3MA7k?feature=shared" target="_blank" class="btn">
+  <i class="fas fa-play"></i> Assistir
+</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sermon-card">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Pastora" class="sermon-img">
+                    <div class="sermon-content">
+                        <h3>O Poder da Oração</h3>
+                        <p><strong>Pastora Maria Santos</strong> | 11 de Junho, 2023</p>
+                        <p>Entenda como a oração pode transformar sua vida e suas circunstâncias.</p>
+                        <div class="sermon-actions">
+                           <a href="https://youtu.be/1OSIXF3MA7k?feature=shared" target="_blank" class="btn">
+  <i class="fas fa-play"></i> Assistir
+</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contato" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+                <p>Estamos à disposição para responder suas perguntas</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Nossa Senhora do Perpétuo Socorro, 322 - Bairro Costeira - Araucária</p>
+                    <p><i class="fas fa-phone"></i> (41) 999601251</p>
+                    <p><i class="fas fa-envelope"></i> igrejaassembleiaaraucaria@gmail.com</p>
+                    
+                    <h3>Horários de Culto</h3>
+                    <p><strong>Segunda</strong>:20h00(Oração)</p>
+                    <p><strong>Terça-feira</strong>:20h00 (Culto de ensino Sede)</p>
+                    <p><strong>Quarta-feira</strong>:19h00 (Ensaio irmãs)</p>
+                    <p><strong>Quinta-feira</strong>:19h00 (Ensaio irmãos)</p>
+                    <p><strong>sexta-feira</strong>:20h00 (Culto de ensino)</p>
+                    <p><strong>Domingo</strong>: 09h00 (EBD)</p>
+                    <p><strong>Domingo</strong>:19h00 (Culto)</p>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Envie uma Mensagem</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu e-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Sua mensagem" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="doacao" class="donation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Faça uma Doação</h2>
+                <p>Suporte nossa missão e ajude a manter nosso trabalho</p>
+            </div>
+            
+            <div class="donation-content">
+                <p>Sua doação é fundamental para mantermos nossas atividades e projetos sociais. Com seu apoio, podemos continuar espalhando a palavra de Deus e ajudando nossa comunidade.</p>
+                
+                <div class="donation-methods">
+                    <div class="donation-method">
+                        <div class="donation-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h3>PIX</h3>
+                        <p>Faça uma doação rápida e segura via PIX</p>
+                        <div class="pix-key" id="pixKey">116.796.689-94</div>
+                        <button class="copy-btn" onclick="copyPixKey()">
+                            <i class="fas fa-copy"></i> Copiar Chave PIX
+                        </button>
+                        <p class="small-text">Chave PIX (CPF)</p>
+                    </div>
+                    
+                    <div class="donation-method">
+                        <div class="donation-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h3>Doação Presencial</h3>
+                        <p>Você também pode fazer sua doação pessoalmente em nossa igreja</p>
+                        <p><i class="fas fa-clock"></i> Durante os horários de funcionamento</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Rua Nossa Senhora do Perpétuo Socorro, 322</p>
+                    </div>
+                </div>
+                
+                <div class="donation-info">
+                    <p><strong>Observação:</strong> Todas as doações são utilizadas para a manutenção da igreja, projetos sociais e atividades comunitárias. Agradecemos sua contribuição!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-church"></i>
+                        <span>Igreja Assembleia - Gralha Azul</span>
+                    </div>
+                    <p>Uma comunidade de fé, esperança e amor em Araucária.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#ministerios">Ministérios</a></li>
+                        <li><a href="#eventos">Eventos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#doacao">Doações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <p>Siga-nos em nossas redes sociais</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/ad.gralha_azul?igsh=eWR6cTcxZ25tNXhy" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/suaigreja" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@ieadargralhazul6791?si=M2JTqVTs8BDBVVGH" target="_blank" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Igreja Assembleia de Deus - Araucária. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Navegação entre abas
-        document.querySelectorAll('.sidebar-menu a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove a classe active de todos os links
-                document.querySelectorAll('.sidebar-menu a').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                // Adiciona a classe active ao link clicado
-                this.classList.add('active');
-                
-                // Oculta todos os conteúdos
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // Mostra o conteúdo correspondente
-                const tabId = this.getAttribute('data-tab');
-                document.getElementById(`${tabId}-content`).classList.add('active');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu mobile
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
             });
-        });
-        
-        // Navegação entre abas de eventos
-        document.querySelectorAll('[data-event-tab]').forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove a classe active de todas as abas
-                document.querySelectorAll('[data-event-tab]').forEach(item => {
-                    item.classList.remove('active');
+            
+            // Fechar menu ao clicar em um link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
                 });
-                
-                // Adiciona a classe active à aba clicada
-                this.classList.add('active');
-                
-                // Oculta todos os conteúdos de evento
-                document.querySelectorAll('#events-content .tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // Mostra o conteúdo correspondente
-                const tabId = this.getAttribute('data-event-tab');
-                document.getElementById(`events-${tabId}`).classList.add('active');
             });
-        });
-        
-        // Navegação entre abas de membros
-        document.querySelectorAll('[data-member-tab]').forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove a classe active de todas as abas
-                document.querySelectorAll('[data-member-tab]').forEach(item => {
-                    item.classList.remove('active');
+            
+            // Smooth scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
-                
-                // Adiciona a classe active à aba clicada
-                this.classList.add('active');
-                
-                // Oculta todos os conteúdos de membro
-                document.querySelectorAll('#members-content .tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // Mostra o conteúdo correspondente
-                const tabId = this.getAttribute('data-member-tab');
-                document.getElementById(`members-${tabId}`).classList.add('active');
             });
-        });
-        
-        // Preview de imagens
-        document.getElementById('home-image').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('home-image-preview').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+            
+            // Formulário de contato
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                    contactForm.reset();
+                });
             }
         });
         
-        document.getElementById('member-photo').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('member-photo-preview').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-        
-        document.getElementById('site-logo').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('site-logo-preview').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-        
-        // Funções para salvar conteúdo
-        function showAlert(message, type) {
-            const alertArea = document.getElementById('alert-area');
-            const alert = document.createElement('div');
-            alert.className = `alert alert-${type}`;
+        // Função para copiar a chave PIX
+        function copyPixKey() {
+            const pixKey = document.getElementById('pixKey');
+            const textArea = document.createElement('textarea');
+            textArea.value = pixKey.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
             
-            // Ícone baseado no tipo
-            const icon = type === 'success' ? '✓' : '⚠';
-            alert.innerHTML = `<span>${icon}</span> ${message}`;
-            
-            alertArea.appendChild(alert);
-            
-            setTimeout(() => {
-                alert.remove();
-            }, 5000);
+            alert('Chave PIX copiada para a área de transferência!');
         }
-        
-        function saveHomeContent() {
-            // Aqui você implementaria a lógica para salvar no seu backend
-            showAlert('Conteúdo da página inicial salvo com sucesso!', 'success');
-        }
-        
-        function saveAboutContent() {
-            showAlert('Conteúdo sobre a igreja salvo com sucesso!', 'success');
-        }
-        
-        function addEvent() {
-            // Aqui você implementaria a lógica para adicionar um evento
-            showAlert('Evento adicionado com sucesso!', 'success');
-            
-            // Limpar formulário
-            document.getElementById('event-title').value = '';
-           
+    </script>
+</body>
+</html>
