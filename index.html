@@ -137,6 +137,27 @@
         .item-row input, .item-row textarea { flex:1; padding:8px 10px; border:1px solid #e2e8f0; border-radius:6px; font-size:.95rem; }
         .danger { background:#e53e3e; }
         .success { background:#38a169; }
+        
+        /* Estilos para as abas do admin */
+        .admin-tab { 
+            padding: 8px 16px; 
+            background: none; 
+            border: none; 
+            cursor: pointer; 
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .admin-tab.active { 
+            border-bottom: 2px solid #3a6ea5; 
+            color: #3a6ea5;
+            font-weight: 600;
+        }
+        .admin-tab-content { 
+            display: none; 
+        }
+        .admin-tab-content.active { 
+            display: block; 
+        }
 
         /* tiny helpers */
         .muted { color:#718096; font-size:.95rem; }
@@ -176,7 +197,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Igreja Assembleia de Deus - Gralha Azul</h1>
+                <h1 id="heroTitle">Igreja Assembleia de Deus - Gralha Azul</h1>
                 <p id="addressText">Rua Nossa Senhora do Perpétuo Socorro, 322 - Bairro Costeira - Araucária</p>
                 <div class="hero-buttons">
                     <a href="#contato" class="btn">Visite-nos</a>
@@ -190,14 +211,14 @@
     <section id="sobre" class="about">
         <div class="container">
             <div class="section-title">
-                <h2>Nossa História</h2>
-                <p>Conheça um pouco sobre nossa igreja e nossa missão</p>
+                <h2 id="aboutTitle">Nossa História</h2>
+                <p id="aboutSubtitle">Conheça um pouco sobre nossa igreja e nossa missão</p>
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p>A Igreja Assembleia de Deus em Araucária tem como missão servir a comunidade local, pregando o Evangelho de Jesus Cristo e promovendo o crescimento espiritual de seus membros.</p>
-                    <p>Nossa congregação está localizada no Bairro Costeira e temos orgulho de fazer parte desta comunidade há vários anos.</p>
-                    <p>Estamos comprometidos com os valores cristãos e com o bem-estar espiritual de todos que buscam a Deus.</p>
+                    <p id="aboutText1">A Igreja Assembleia de Deus em Araucária tem como missão servir a comunidade local, pregando o Evangelho de Jesus Cristo e promovendo o crescimento espiritual de seus membros.</p>
+                    <p id="aboutText2">Nossa congregação está localizada no Bairro Costeira e temos orgulho de fazer parte desta comunidade há vários anos.</p>
+                    <p id="aboutText3">Estamos comprometidos com os valores cristãos e com o bem-estar espiritual de todos que buscam a Deus.</p>
                 </div>
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Igreja">
@@ -210,40 +231,12 @@
     <section id="ministerios" class="features">
         <div class="container">
             <div class="section-title">
-                <h2>Nossos Ministérios</h2>
-                <p>Conheça as diferentes formas de se conectar e servir em nossa comunidade</p>
+                <h2 id="ministriesTitle">Nossos Ministérios</h2>
+                <p id="ministriesSubtitle">Conheça as diferentes formas de se conectar e servir em nossa comunidade</p>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Ministério de Acolhimento</h3>
-                        <p>Voltado para receber novos membros e integrá-los à comunidade.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Ministério de Louvor</h3>
-                        <p>Responsável pela música e adoração em nossos cultos.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Ministério Social</h3>
-                        <p>Desenvolve projetos de assistência e apoio à comunidade local.</p>
-                    </div>
-                </div>
+            <div id="ministriesGrid" class="features-grid">
+                <!-- Ministérios serão renderizados por JS -->
             </div>
         </div>
     </section>
@@ -252,8 +245,8 @@
     <section id="eventos" class="events">
         <div class="container">
             <div class="section-title">
-                <h2>Próximos Eventos</h2>
-                <p>Participe de nossas celebrações e atividades</p>
+                <h2 id="eventsTitle">Próximos Eventos</h2>
+                <p id="eventsSubtitle">Participe de nossas celebrações e atividades</p>
             </div>
             <div id="eventsGrid" class="events-grid">
                 <!-- Eventos serão renderizados por JS -->
@@ -265,8 +258,8 @@
     <section class="sermons">
         <div class="container">
             <div class="section-title">
-                <h2>Pregações Recentes</h2>
-                <p>Assista ou ouça nossas mensagens mais recentes</p>
+                <h2 id="sermonsTitle">Pregações Recentes</h2>
+                <p id="sermonsSubtitle">Assista ou ouça nossas mensagens mais recentes</p>
             </div>
             <div id="sermonList" class="sermon-list">
                 <!-- Pregações renderizadas por JS -->
@@ -278,8 +271,8 @@
     <section id="contato" class="contact">
         <div class="container">
             <div class="section-title">
-                <h2>Entre em Contato</h2>
-                <p>Estamos à disposição para responder suas perguntas</p>
+                <h2 id="contactTitle">Entre em Contato</h2>
+                <p id="contactSubtitle">Estamos à disposição para responder suas perguntas</p>
             </div>
             <div class="contact-content">
                 <div id="contactInfo" class="contact-info">
@@ -308,12 +301,12 @@
     <section id="doacao" class="donation">
         <div class="container">
             <div class="section-title">
-                <h2>Faça uma Doação</h2>
-                <p>Suporte nossa missão e ajude a manter nosso trabalho</p>
+                <h2 id="donationTitle">Faça uma Doação</h2>
+                <p id="donationSubtitle">Suporte nossa missão e ajude a manter nosso trabalho</p>
             </div>
             
             <div class="donation-content">
-                <p>Sua doação é fundamental para mantermos nossas atividades e projetos sociais. Com seu apoio, podemos continuar espalhando a palavra de Deus e ajudando nossa comunidade.</p>
+                <p id="donationText">Sua doação é fundamental para mantermos nossas atividades e projetos sociais. Com seu apoio, podemos continuar espalhando a palavra de Deus e ajudando nossa comunidade.</p>
                 
                 <div class="donation-methods">
                     <div class="donation-method">
@@ -321,7 +314,7 @@
                             <i class="fas fa-qrcode"></i>
                         </div>
                         <h3>PIX</h3>
-                        <p>Faça uma doação rápida e segura via PIX</p>
+                        <p id="pixDescription">Faça uma doação rápida e segura via PIX</p>
                         <div class="pix-key" id="pixKey">116.796.689-94</div>
                         <button class="copy-btn" onclick="copyPixKey()">
                             <i class="fas fa-copy"></i> Copiar Chave PIX
@@ -334,7 +327,7 @@
                             <i class="fas fa-hand-holding-usd"></i>
                         </div>
                         <h3>Doação Presencial</h3>
-                        <p>Você também pode fazer sua doação pessoalmente em nossa igreja</p>
+                        <p id="presentialDonationText">Você também pode fazer sua doação pessoalmente em nossa igreja</p>
                         <p><i class="fas fa-clock"></i> Durante os horários de funcionamento</p>
                         <p><i class="fas fa-map-marker-alt"></i> Rua Nossa Senhora do Perpétuo Socorro, 322</p>
                     </div>
@@ -387,86 +380,6 @@
                     </div>
                 </div>
             </div>
-            <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // --- Dados de contato ---
-    const contact = JSON.parse(localStorage.getItem('church_contact'));
-    if(contact) {
-        document.querySelectorAll('.contact-info p').forEach(p => {
-            if(p.innerHTML.includes('(41)') && contact.phone) p.innerHTML = `<i class="fas fa-phone"></i> ${contact.phone}`;
-            if(p.innerHTML.includes('gmail') && contact.email) p.innerHTML = `<i class="fas fa-envelope"></i> ${contact.email}`;
-            if(p.innerHTML.includes('Rua')) p.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${contact.address}`;
-        });
-
-        document.querySelectorAll('.contact-info p strong').forEach(p => {
-            if(p.innerHTML.includes('Segunda')) return; // não mexe nos horários
-        });
-
-        document.querySelectorAll('.donation-method p').forEach(p => {
-            if(p.innerHTML.includes('Rua') && contact.address) {
-                p.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${contact.address}`;
-            }
-        });
-    }
-
-    // --- Chave PIX ---
-    const pix = localStorage.getItem('church_pix');
-    if(pix) {
-        const pixDiv = document.getElementById('pixKey');
-        if(pixDiv) pixDiv.textContent = pix;
-    }
-
-    // --- Eventos ---
-    const events = localStorage.getItem('church_events');
-    if(events) {
-        const eventsGrid = document.querySelector('.events-grid');
-        if(eventsGrid) {
-            eventsGrid.innerHTML = ''; // Limpa eventos existentes
-            try {
-                const eventsArr = JSON.parse(events);
-                eventsArr.forEach(ev => {
-                    const card = document.createElement('div');
-                    card.classList.add('event-card');
-                    card.innerHTML = `
-                        <div class="event-date">
-                            <h3>${ev.date.split(' ')[0]} <span>${ev.date.split(' ')[1]}</span></h3>
-                        </div>
-                        <div class="event-content">
-                            <h3>${ev.title}</h3>
-                            <p><i class="far fa-clock"></i> ${ev.time}</p>
-                            <p><i class="fas fa-map-marker-alt"></i> ${ev.location}</p>
-                        </div>`;
-                    eventsGrid.appendChild(card);
-                });
-            } catch(e) { console.error('Erro ao ler eventos do localStorage', e); }
-        }
-    }
-
-    // --- Ministérios ---
-    const ministries = localStorage.getItem('church_ministries');
-    if(ministries) {
-        const featuresGrid = document.querySelector('.features-grid');
-        if(featuresGrid) {
-            featuresGrid.innerHTML = '';
-            try {
-                const ministriesArr = JSON.parse(ministries);
-                ministriesArr.forEach(min => {
-                    const card = document.createElement('div');
-                    card.classList.add('feature-card');
-                    card.innerHTML = `
-                        <div class="feature-icon"><i class="${min.icon}"></i></div>
-                        <div class="feature-content">
-                            <h3>${min.name}</h3>
-                            <p>${min.description}</p>
-                        </div>`;
-                    featuresGrid.appendChild(card);
-                });
-            } catch(e) { console.error('Erro ao ler ministérios do localStorage', e); }
-        }
-    }
-});
-</script>
-
             <div class="footer-bottom">
                 <p>&copy; Igreja Assembleia de Deus - Araucária. Todos os direitos reservados.</p>
             </div>
@@ -477,17 +390,17 @@ document.addEventListener('DOMContentLoaded', function() {
     <div id="loginModal" class="modal" aria-hidden="true">
         <div class="modal-card">
             <h3>Login Administrativo</h3>
-            <p class="muted">Entre com usuário e senha</p>
+            <p class="muted">Entre com e-mail e senha</p>
             <div style="margin-top:10px;">
-                <label for="adminUser" class="muted">Usuário</label>
-                <input id="adminUser" type="text" placeholder="admin" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label for="adminEmail" class="muted">E-mail</label>
+                <input id="adminEmailInput" type="email" placeholder="seu@email.com" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
                 <label for="adminPass" class="muted" style="margin-top:8px; display:block;">Senha</label>
                 <input id="adminPass" type="password" placeholder="senha" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
                 <div style="display:flex; gap:8px; margin-top:12px; justify-content:flex-end;">
                     <button id="cancelLogin" class="btn btn-outline">Cancelar</button>
                     <button id="submitLogin" class="btn">Entrar</button>
                 </div>
-                <p class="small muted" style="margin-top:8px;">(credenciais padrão: <strong>admin</strong> / <strong>123456</strong>)</p>
+                <p class="small muted" style="margin-top:8px;">(credenciais padrão: <strong>admin@igreja.com</strong> / <strong>123456</strong>)</p>
             </div>
         </div>
     </div>
@@ -502,36 +415,100 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
 
-        <!-- Edit Events -->
-        <div class="admin-section" id="adminEventsSection">
-            <h4>Eventos</h4>
-            <div id="adminEventsList"></div>
-            <button id="addEventBtn" class="btn btn-outline" style="margin-top:8px;">+ Adicionar Evento</button>
+        <!-- Tabs de navegação -->
+        <div style="display:flex; border-bottom:1px solid #e2e8f0; margin-bottom:15px;">
+            <button class="admin-tab active" data-tab="content">Conteúdo</button>
+            <button class="admin-tab" data-tab="events">Eventos</button>
+            <button class="admin-tab" data-tab="sermons">Pregações</button>
+            <button class="admin-tab" data-tab="settings">Configurações</button>
         </div>
 
-        <!-- Edit Sermons -->
-        <div class="admin-section" id="adminSermonsSection">
-            <h4>Pregações</h4>
-            <div id="adminSermonList"></div>
-            <button id="addSermonBtn" class="btn btn-outline" style="margin-top:8px;">+ Adicionar Pregação</button>
+        <!-- Conteúdo -->
+        <div id="adminContentTab" class="admin-tab-content active">
+            <div class="admin-section">
+                <h4>Página Inicial</h4>
+                <label class="muted">Título Principal</label>
+                <input id="adminHeroTitle" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">Subtítulo/Endereço</label>
+                <input id="adminAddress" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            </div>
+
+            <div class="admin-section">
+                <h4>Sobre a Igreja</h4>
+                <label class="muted">Título da Seção</label>
+                <input id="adminAboutTitle" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">Subtítulo</label>
+                <input id="adminAboutSubtitle" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">Texto 1</label>
+                <textarea id="adminAboutText1" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0; min-height:80px;"></textarea>
+                <label class="muted" style="margin-top:8px; display:block;">Texto 2</label>
+                <textarea id="adminAboutText2" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0; min-height:80px;"></textarea>
+                <label class="muted" style="margin-top:8px; display:block;">Texto 3</label>
+                <textarea id="adminAboutText3" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0; min-height:80px;"></textarea>
+            </div>
+
+            <div class="admin-section">
+                <h4>Ministérios</h4>
+                <label class="muted">Título da Seção</label>
+                <input id="adminMinistriesTitle" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">Subtítulo</label>
+                <input id="adminMinistriesSubtitle" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <div id="adminMinistriesList"></div>
+                <button id="addMinistryBtn" class="btn btn-outline" style="margin-top:8px;">+ Adicionar Ministério</button>
+            </div>
+
+            <div class="admin-section">
+                <h4>Doações</h4>
+                <label class="muted">Título da Seção</label>
+                <input id="adminDonationTitle" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">Subtítulo</label>
+                <input id="adminDonationSubtitle" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">Texto Principal</label>
+                <textarea id="adminDonationText" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0; min-height:80px;"></textarea>
+                <label class="muted" style="margin-top:8px; display:block;">Descrição PIX</label>
+                <input id="adminPixDescription" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">Texto Doação Presencial</label>
+                <input id="adminPresentialDonationText" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            </div>
         </div>
 
-        <!-- Edit Contact -->
-        <div class="admin-section" id="adminContactSection">
-            <h4>Contato & Horários</h4>
-            <label class="muted">Endereço</label>
-            <input id="adminAddress" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
-            <label class="muted" style="margin-top:8px; display:block;">Telefone</label>
-            <input id="adminPhone" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
-            <label class="muted" style="margin-top:8px; display:block;">E-mail</label>
-            <input id="adminEmail" type="email" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+        <!-- Eventos -->
+        <div id="adminEventsTab" class="admin-tab-content">
+            <div class="admin-section" id="adminEventsSection">
+                <h4>Eventos</h4>
+                <div id="adminEventsList"></div>
+                <button id="addEventBtn" class="btn btn-outline" style="margin-top:8px;">+ Adicionar Evento</button>
+            </div>
         </div>
 
-        <!-- Edit PIX -->
-        <div class="admin-section" id="adminPixSection">
-            <h4>PIX</h4>
-            <label class="muted">Chave PIX</label>
-            <input id="adminPix" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+        <!-- Pregações -->
+        <div id="adminSermonsTab" class="admin-tab-content">
+            <div class="admin-section" id="adminSermonsSection">
+                <h4>Pregações</h4>
+                <div id="adminSermonList"></div>
+                <button id="addSermonBtn" class="btn btn-outline" style="margin-top:8px;">+ Adicionar Pregação</button>
+            </div>
+        </div>
+
+        <!-- Configurações -->
+        <div id="adminSettingsTab" class="admin-tab-content">
+            <div class="admin-section" id="adminContactSection">
+                <h4>Contato & Horários</h4>
+                <label class="muted">Endereço</label>
+                <input id="adminContactAddress" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">Telefone</label>
+                <input id="adminPhone" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">E-mail</label>
+                <input id="adminEmail" type="email" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <label class="muted" style="margin-top:8px; display:block;">Horários de Culto</label>
+                <textarea id="adminServiceTimes" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0; min-height:150px;"></textarea>
+            </div>
+
+            <div class="admin-section" id="adminPixSection">
+                <h4>PIX</h4>
+                <label class="muted">Chave PIX</label>
+                <input id="adminPix" type="text" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            </div>
         </div>
 
         <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:10px;">
@@ -545,22 +522,53 @@ document.addEventListener('DOMContentLoaded', function() {
          * Dados iniciais (padrão)
          ***********************/
         const defaultData = {
+            heroTitle: "Igreja Assembleia de Deus - Gralha Azul",
             address: "Rua Nossa Senhora do Perpétuo Socorro, 322 - Bairro Costeira - Araucária",
             phone: "(41) 999601251",
             email: "igrejaassembleiaaraucaria@gmail.com",
             pix: "116.796.689-94",
+            aboutTitle: "Nossa História",
+            aboutSubtitle: "Conheça um pouco sobre nossa igreja e nossa missão",
+            aboutText1: "A Igreja Assembleia de Deus em Araucária tem como missão servir a comunidade local, pregando o Evangelho de Jesus Cristo e promovendo o crescimento espiritual de seus membros.",
+            aboutText2: "Nossa congregação está localizada no Bairro Costeira e temos orgulho de fazer parte desta comunidade há vários anos.",
+            aboutText3: "Estamos comprometidos com os valores cristãos e com o bem-estar espiritual de todos que buscam a Deus.",
+            ministriesTitle: "Nossos Ministérios",
+            ministriesSubtitle: "Conheça as diferentes formas de se conectar e servir em nossa comunidade",
+            ministries: [
+                { id: 1, name: "Ministério de Acolhimento", description: "Voltado para receber novos membros e integrá-los à comunidade.", icon: "fas fa-hands-helping" },
+                { id: 2, name: "Ministério de Louvor", description: "Responsável pela música e adoração em nossos cultos.", icon: "fas fa-music" },
+                { id: 3, name: "Ministério Social", description: "Desenvolve projetos de assistência e apoio à comunidade local.", icon: "fas fa-hands" }
+            ],
+            eventsTitle: "Próximos Eventos",
+            eventsSubtitle: "Participe de nossas celebrações e atividades",
             events: [
                 { id: 1, day: "20", month: "Set", title: "Culto da Unaadar", time: "19:00 - 21:30", location: "Igreja Assembleia Sede" },
                 { id: 2, day: "03 a 05", month: "Out", title: "Congresso Unaadar", time: "19:00 - 21:30", location: "Igreja Assembleia Sede" },
                 { id: 3, day: "12", month: "Out", title: "Congresso Kids", time: "09:00 - 16:00", location: "Igreja Assembleia Gralha Azul" }
             ],
+            sermonsTitle: "Pregações Recentes",
+            sermonsSubtitle: "Assista ou ouça nossas mensagens mais recentes",
             sermons: [
                 { id: 1, title: "A Fé em Tempos de Incerteza", pastor: "Pastor João Silva", date: "18 de Junho, 2023", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80", url: "https://youtu.be/1OSIXF3MA7k?feature=shared", description: "Uma mensagem sobre como manter a fé em meio às adversidades da vida." },
                 { id: 2, title: "O Poder da Oração", pastor: "Pastora Maria Santos", date: "11 de Junho, 2023", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80", url: "https://youtu.be/1OSIXF3MA7k?feature=shared", description: "Entenda como a oração pode transformar sua vida e suas circunstâncias." }
-            ]
+            ],
+            contactTitle: "Entre em Contato",
+            contactSubtitle: "Estamos à disposição para responder suas perguntas",
+            donationTitle: "Faça uma Doação",
+            donationSubtitle: "Suporte nossa missão e ajude a manter nosso trabalho",
+            donationText: "Sua doação é fundamental para mantermos nossas atividades e projetos sociais. Com seu apoio, podemos continuar espalhando a palavra de Deus e ajudando nossa comunidade.",
+            pixDescription: "Faça uma doação rápida e segura via PIX",
+            presentialDonationText: "Você também pode fazer sua doação pessoalmente em nossa igreja",
+            serviceTimes: `Segunda: 20h00 (Oração)
+Terça-feira: 20h00 (Culto de ensino Sede)
+Quarta-feira: 19h00 (Ensaio irmãs)
+Quinta-feira: 19h00 (Ensaio irmãos)
+Sexta-feira: 20h00 (Culto de ensino)
+Domingo: 09h00 (EBD)
+Domingo: 19h00 (Culto)`
         };
 
-        const STORAGE_KEY = 'churchData_v1';
+        const STORAGE_KEY = 'churchData_v2';
         const AUTH_KEY = 'isAdmin_v1';
 
         /***********************
@@ -602,11 +610,52 @@ document.addEventListener('DOMContentLoaded', function() {
          ***********************/
         function renderAll() {
             const data = loadData();
+            
+            // Renderizar conteúdo textual
+            document.getElementById('heroTitle').textContent = data.heroTitle;
+            document.getElementById('addressText').textContent = data.address;
+            document.getElementById('aboutTitle').textContent = data.aboutTitle;
+            document.getElementById('aboutSubtitle').textContent = data.aboutSubtitle;
+            document.getElementById('aboutText1').textContent = data.aboutText1;
+            document.getElementById('aboutText2').textContent = data.aboutText2;
+            document.getElementById('aboutText3').textContent = data.aboutText3;
+            document.getElementById('ministriesTitle').textContent = data.ministriesTitle;
+            document.getElementById('ministriesSubtitle').textContent = data.ministriesSubtitle;
+            document.getElementById('eventsTitle').textContent = data.eventsTitle;
+            document.getElementById('eventsSubtitle').textContent = data.eventsSubtitle;
+            document.getElementById('sermonsTitle').textContent = data.sermonsTitle;
+            document.getElementById('sermonsSubtitle').textContent = data.sermonsSubtitle;
+            document.getElementById('contactTitle').textContent = data.contactTitle;
+            document.getElementById('contactSubtitle').textContent = data.contactSubtitle;
+            document.getElementById('donationTitle').textContent = data.donationTitle;
+            document.getElementById('donationSubtitle').textContent = data.donationSubtitle;
+            document.getElementById('donationText').textContent = data.donationText;
+            document.getElementById('pixDescription').textContent = data.pixDescription;
+            document.getElementById('presentialDonationText').textContent = data.presentialDonationText;
+            document.getElementById('pixKey').textContent = data.pix;
+            
+            // Renderizar elementos dinâmicos
+            renderMinistries(data.ministries);
             renderEvents(data.events);
             renderSermons(data.sermons);
             renderContact(data);
-            document.getElementById('pixKey').textContent = data.pix;
-            document.getElementById('addressText').textContent = data.address;
+        }
+
+        function renderMinistries(ministries) {
+            const grid = document.getElementById('ministriesGrid');
+            grid.innerHTML = '';
+            ministries.forEach(min => {
+                const card = document.createElement('div');
+                card.className = 'feature-card';
+                card.innerHTML = `
+                    <div class="feature-icon"><i class="${min.icon}"></i></div>
+                    <div class="feature-content">
+                        <h3>${min.name}</h3>
+                        <p>${min.description}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
         }
 
         function renderEvents(events) {
@@ -655,24 +704,31 @@ document.addEventListener('DOMContentLoaded', function() {
             const el = document.getElementById('contactInfo');
             el.innerHTML = `
                 <h3>Informações de Contato</h3>
-                <p><i class="fas fa-map-marker-alt"></i> <span id="contactAddress">${data.address}</span></p>
-                <p><i class="fas fa-phone"></i> <span id="contactPhone">${data.phone}</span></p>
-                <p><i class="fas fa-envelope"></i> <span id="contactEmail">${data.email}</span></p>
+                <p><i class="fas fa-map-marker-alt"></i> ${data.address}</p>
+                <p><i class="fas fa-phone"></i> ${data.phone}</p>
+                <p><i class="fas fa-envelope"></i> ${data.email}</p>
                 
                 <h3>Horários de Culto</h3>
-                <p><strong>Segunda</strong>:20h00(Oração)</p>
-                <p><strong>Terça-feira</strong>:20h00 (Culto de ensino Sede)</p>
-                <p><strong>Quarta-feira</strong>:19h00 (Ensaio irmãs)</p>
-                <p><strong>Quinta-feira</strong>:19h00 (Ensaio irmãos)</p>
-                <p><strong>Sexta-feira</strong>:20h00 (Culto de ensino)</p>
-                <p><strong>Domingo</strong>: 09h00 (EBD)</p>
-                <p><strong>Domingo</strong>:19h00 (Culto)</p>
+                <div>${data.serviceTimes.replace(/\n/g, '<br>')}</div>
             `;
         }
 
         /***********************
          * Admin panel: helpers para construir inputs dinamicamente
          ***********************/
+        function buildMinistryAdminRow(min) {
+            const wrap = document.createElement('div');
+            wrap.className = 'item-row';
+            wrap.innerHTML = `
+                <input type="text" data-field="name" value="${min.name}" placeholder="Nome do ministério">
+                <input type="text" data-field="description" value="${min.description}" placeholder="Descrição">
+                <input type="text" data-field="icon" value="${min.icon}" placeholder="Ícone (FontAwesome)">
+                <button class="btn btn-outline btn-remove">Remover</button>
+            `;
+            wrap.querySelector('.btn-remove').addEventListener('click', () => wrap.remove());
+            return wrap;
+        }
+
         function buildEventAdminRow(ev) {
             const wrap = document.createElement('div');
             wrap.className = 'item-row';
@@ -680,12 +736,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <input type="text" data-field="day" value="${ev.day}" placeholder="Dia">
                 <input type="text" data-field="month" value="${ev.month}" placeholder="Mês">
                 <input type="text" data-field="title" value="${ev.title}" placeholder="Título">
+                <input type="text" data-field="time" value="${ev.time || ''}" placeholder="Horário">
+                <input type="text" data-field="location" value="${ev.location || ''}" placeholder="Local">
                 <button class="btn btn-outline btn-remove">Remover</button>
             `;
-            // attach remove
-            wrap.querySelector('.btn-remove').addEventListener('click', () => {
-                wrap.remove();
-            });
+            wrap.querySelector('.btn-remove').addEventListener('click', () => wrap.remove());
             return wrap;
         }
 
@@ -696,6 +751,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <input type="text" data-field="title" value="${s.title}" placeholder="Título">
                 <input type="text" data-field="pastor" value="${s.pastor}" placeholder="Pastor">
                 <input type="text" data-field="date" value="${s.date}" placeholder="Data">
+                <input type="text" data-field="img" value="${s.img}" placeholder="URL da imagem">
+                <input type="text" data-field="url" value="${s.url}" placeholder="URL do vídeo">
+                <input type="text" data-field="description" value="${s.description}" placeholder="Descrição">
                 <button class="btn btn-outline btn-remove">Remover</button>
             `;
             wrap.querySelector('.btn-remove').addEventListener('click', () => wrap.remove());
@@ -714,27 +772,77 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function populateAdminFields() {
             const data = loadData();
-            // events
+            
+            // Conteúdo textual
+            document.getElementById('adminHeroTitle').value = data.heroTitle;
+            document.getElementById('adminAddress').value = data.address;
+            document.getElementById('adminAboutTitle').value = data.aboutTitle;
+            document.getElementById('adminAboutSubtitle').value = data.aboutSubtitle;
+            document.getElementById('adminAboutText1').value = data.aboutText1;
+            document.getElementById('adminAboutText2').value = data.aboutText2;
+            document.getElementById('adminAboutText3').value = data.aboutText3;
+            document.getElementById('adminMinistriesTitle').value = data.ministriesTitle;
+            document.getElementById('adminMinistriesSubtitle').value = data.ministriesSubtitle;
+            document.getElementById('adminDonationTitle').value = data.donationTitle;
+            document.getElementById('adminDonationSubtitle').value = data.donationSubtitle;
+            document.getElementById('adminDonationText').value = data.donationText;
+            document.getElementById('adminPixDescription').value = data.pixDescription;
+            document.getElementById('adminPresentialDonationText').value = data.presentialDonationText;
+            
+            // Ministérios
+            const adminMinistriesList = document.getElementById('adminMinistriesList');
+            adminMinistriesList.innerHTML = '';
+            data.ministries.forEach(min => adminMinistriesList.appendChild(buildMinistryAdminRow(min)));
+            
+            // Eventos
             const adminEventsList = document.getElementById('adminEventsList');
             adminEventsList.innerHTML = '';
             data.events.forEach(ev => adminEventsList.appendChild(buildEventAdminRow(ev)));
-
-            // sermons
+            
+            // Pregações
             const adminSermonList = document.getElementById('adminSermonList');
             adminSermonList.innerHTML = '';
             data.sermons.forEach(s => adminSermonList.appendChild(buildSermonAdminRow(s)));
-
-            // contact fields
-            document.getElementById('adminAddress').value = data.address;
+            
+            // Configurações
+            document.getElementById('adminContactAddress').value = data.address;
             document.getElementById('adminPhone').value = data.phone;
             document.getElementById('adminEmail').value = data.email;
             document.getElementById('adminPix').value = data.pix;
+            document.getElementById('adminServiceTimes').value = data.serviceTimes;
         }
 
         function collectAdminFieldsAndSave() {
             const data = loadData();
 
-            // collect events
+            // Coletar conteúdo textual
+            data.heroTitle = document.getElementById('adminHeroTitle').value || data.heroTitle;
+            data.address = document.getElementById('adminAddress').value || data.address;
+            data.aboutTitle = document.getElementById('adminAboutTitle').value || data.aboutTitle;
+            data.aboutSubtitle = document.getElementById('adminAboutSubtitle').value || data.aboutSubtitle;
+            data.aboutText1 = document.getElementById('adminAboutText1').value || data.aboutText1;
+            data.aboutText2 = document.getElementById('adminAboutText2').value || data.aboutText2;
+            data.aboutText3 = document.getElementById('adminAboutText3').value || data.aboutText3;
+            data.ministriesTitle = document.getElementById('adminMinistriesTitle').value || data.ministriesTitle;
+            data.ministriesSubtitle = document.getElementById('adminMinistriesSubtitle').value || data.ministriesSubtitle;
+            data.donationTitle = document.getElementById('adminDonationTitle').value || data.donationTitle;
+            data.donationSubtitle = document.getElementById('adminDonationSubtitle').value || data.donationSubtitle;
+            data.donationText = document.getElementById('adminDonationText').value || data.donationText;
+            data.pixDescription = document.getElementById('adminPixDescription').value || data.pixDescription;
+            data.presentialDonationText = document.getElementById('adminPresentialDonationText').value || data.presentialDonationText;
+            
+            // Coletar ministérios
+            const ministryNodes = Array.from(document.getElementById('adminMinistriesList').querySelectorAll('.item-row'));
+            const ministries = ministryNodes.map((node, idx) => {
+                return {
+                    id: data.ministries[idx] ? data.ministries[idx].id || uid() : uid(),
+                    name: node.querySelector('[data-field="name"]').value || '',
+                    description: node.querySelector('[data-field="description"]').value || '',
+                    icon: node.querySelector('[data-field="icon"]').value || 'fas fa-hands-helping'
+                };
+            });
+            
+            // Coletar eventos
             const eventNodes = Array.from(document.getElementById('adminEventsList').querySelectorAll('.item-row'));
             const events = eventNodes.map((node, idx) => {
                 return {
@@ -742,12 +850,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     day: node.querySelector('[data-field="day"]').value || '',
                     month: node.querySelector('[data-field="month"]').value || '',
                     title: node.querySelector('[data-field="title"]').value || '',
-                    time: '', // optional: could add more inputs
-                    location: ''
+                    time: node.querySelector('[data-field="time"]').value || '',
+                    location: node.querySelector('[data-field="location"]').value || ''
                 };
             });
 
-            // collect sermons
+            // Coletar pregações
             const sermonNodes = Array.from(document.getElementById('adminSermonList').querySelectorAll('.item-row'));
             const sermons = sermonNodes.map((node, idx) => {
                 return {
@@ -755,18 +863,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     title: node.querySelector('[data-field="title"]').value || '',
                     pastor: node.querySelector('[data-field="pastor"]').value || '',
                     date: node.querySelector('[data-field="date"]').value || '',
-                    img: data.sermons[idx] ? data.sermons[idx].img : '',
-                    url: data.sermons[idx] ? data.sermons[idx].url : '',
-                    description: data.sermons[idx] ? data.sermons[idx].description : ''
+                    img: node.querySelector('[data-field="img"]').value || '',
+                    url: node.querySelector('[data-field="url"]').value || '',
+                    description: node.querySelector('[data-field="description"]').value || ''
                 };
             });
 
-            data.events = events;
-            data.sermons = sermons;
-            data.address = document.getElementById('adminAddress').value || data.address;
+            // Coletar configurações
+            data.address = document.getElementById('adminContactAddress').value || data.address;
             data.phone = document.getElementById('adminPhone').value || data.phone;
             data.email = document.getElementById('adminEmail').value || data.email;
             data.pix = document.getElementById('adminPix').value || data.pix;
+            data.serviceTimes = document.getElementById('adminServiceTimes').value || data.serviceTimes;
+
+            // Atualizar dados
+            data.ministries = ministries;
+            data.events = events;
+            data.sermons = sermons;
 
             saveData(data);
             renderAll();
@@ -787,7 +900,7 @@ document.addEventListener('DOMContentLoaded', function() {
          * Login / autenticação (apenas front-end)
          ***********************/
         // credenciais de exemplo (troque para algo seguro se for usar)
-        const ADMIN_CREDENTIALS = { user: 'admin', pass: '123456' };
+        const ADMIN_CREDENTIALS = { email: 'admin@igreja.com', pass: '123456' };
 
         document.addEventListener('DOMContentLoaded', function() {
             // render inicial
@@ -857,9 +970,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             submitLogin.addEventListener('click', () => {
-                const user = document.getElementById('adminUser').value.trim();
+                const email = document.getElementById('adminEmailInput').value.trim();
                 const pass = document.getElementById('adminPass').value.trim();
-                if (user === ADMIN_CREDENTIALS.user && pass === ADMIN_CREDENTIALS.pass) {
+                if (email === ADMIN_CREDENTIALS.email && pass === ADMIN_CREDENTIALS.pass) {
                     setAdmin(true);
                     loginModal.classList.remove('show');
                     loginModal.setAttribute('aria-hidden', 'true');
@@ -867,15 +980,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     populateAdminFields();
                     alert('Login bem-sucedido. Seja bem-vindo(a), administrador(a).');
                     // limpar campos
-                    document.getElementById('adminUser').value = '';
+                    document.getElementById('adminEmailInput').value = '';
                     document.getElementById('adminPass').value = '';
                 } else {
-                    alert('Credenciais inválidas. Verifique usuário e senha.');
+                    alert('Credenciais inválidas. Verifique e-mail e senha.');
                 }
             });
 
-            // fechar painel admin
-            closeAdminPanel.addEventListener('click', () => closeAdminPanel());
+            // CORREÇÃO: fechar painel admin
+            closeAdminPanel.addEventListener('click', closeAdminPanel);
 
             // logout
             logoutBtn.addEventListener('click', function() {
@@ -886,13 +999,19 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // botões de adicionar item
+            document.getElementById('addMinistryBtn').addEventListener('click', () => {
+                const container = document.getElementById('adminMinistriesList');
+                container.appendChild(buildMinistryAdminRow({ name: '', description: '', icon: 'fas fa-hands-helping' }));
+            });
+            
             document.getElementById('addEventBtn').addEventListener('click', () => {
                 const container = document.getElementById('adminEventsList');
-                container.appendChild(buildEventAdminRow({ day: '', month: '', title: '' }));
+                container.appendChild(buildEventAdminRow({ day: '', month: '', title: '', time: '', location: '' }));
             });
+            
             document.getElementById('addSermonBtn').addEventListener('click', () => {
                 const container = document.getElementById('adminSermonList');
-                container.appendChild(buildSermonAdminRow({ title: '', pastor: '', date: '' }));
+                container.appendChild(buildSermonAdminRow({ title: '', pastor: '', date: '', img: '', url: '', description: '' }));
             });
 
             // salvar alterações
@@ -912,6 +1031,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     loginModal.classList.remove('show');
                     loginModal.setAttribute('aria-hidden', 'true');
                 }
+            });
+
+            // Navegação entre abas do admin
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active de todas as abas
+                    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Adiciona active à aba clicada
+                    this.classList.add('active');
+                    
+                    // Mostra o conteúdo correspondente
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`admin${tabId.charAt(0).toUpperCase() + tabId.slice(1)}Tab`).classList.add('active');
+                });
             });
 
             // Se admin já está autenticado, mostrar painel reduzido botão logout
