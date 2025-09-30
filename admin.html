@@ -258,7 +258,7 @@
             flex: 1;
         }
         
-        .event-item {
+        .event-item, .sermon-item {
             background-color: var(--light-color);
             padding: 15px;
             border-radius: 4px;
@@ -268,7 +268,7 @@
             align-items: center;
         }
         
-        .event-actions {
+        .event-actions, .sermon-actions {
             display: flex;
             gap: 10px;
         }
@@ -320,6 +320,29 @@
         .copy-btn:hover {
             background-color: #27ae60;
         }
+
+        .sermon-preview {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .sermon-preview h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .sermon-preview .preacher {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .sermon-preview .date {
+            color: #666;
+            font-size: 0.9rem;
+        }
         
         @media (max-width: 768px) {
             .admin-container {
@@ -348,6 +371,7 @@
             <ul class="sidebar-menu">
                 <li><a href="#" class="active" data-tab="home">Página Inicial</a></li>
                 <li><a href="#" data-tab="about">Sobre a Igreja</a></li>
+                <li><a href="#" data-tab="sermons">Pregações</a></li>
                 <li><a href="#" data-tab="events">Eventos</a></li>
                 <li><a href="#" data-tab="donation">Doações PIX</a></li>
                 <li><a href="#" data-tab="contact">Contato</a></li>
@@ -438,6 +462,87 @@ Domingo
                 </div>
                 
                 <button class="btn btn-primary" onclick="saveAboutContent()">Salvar Sobre a Igreja</button>
+            </div>
+
+            <!-- Pregações -->
+            <div class="content-section tab-content" id="sermons-content">
+                <h2>Gerenciar Pregações</h2>
+                
+                <div class="sermon-preview">
+                    <h4>Pré-visualização da Seção de Pregações</h4>
+                    <div class="preacher">Pastor João Silva | 18 de Junho, 2023</div>
+                    <div class="title">A Fé em Tempos de Incerteza</div>
+                    <div class="description">Uma mensagem sobre como manter a fé em meio às adversidades da vida.</div>
+                </div>
+                
+                <div class="tab-container">
+                    <div class="tabs">
+                        <div class="tab active" data-tab="sermons-list">Pregações Cadastradas</div>
+                        <div class="tab" data-tab="sermons-add">Adicionar Pregação</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="sermons-list">
+                        <div class="sermon-item">
+                            <div>
+                                <strong>A Fé em Tempos de Incerteza</strong><br>
+                                <small>Pastor João Silva | 18 de Junho, 2023</small>
+                            </div>
+                            <div class="sermon-actions">
+                                <button class="btn btn-edit btn-sm">Editar</button>
+                                <button class="btn btn-delete btn-sm">Excluir</button>
+                            </div>
+                        </div>
+                        
+                        <div class="sermon-item">
+                            <div>
+                                <strong>O Poder da Oração</strong><br>
+                                <small>Pastora Maria Santos | 11 de Junho, 2023</small>
+                            </div>
+                            <div class="sermon-actions">
+                                <button class="btn btn-edit btn-sm">Editar</button>
+                                <button class="btn btn-delete btn-sm">Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="sermons-add">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sermon-title">Título da Pregação</label>
+                                <input type="text" id="sermon-title" class="form-control" placeholder="Ex: A Fé em Tempos de Incerteza">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sermon-preacher">Pregador</label>
+                                <input type="text" id="sermon-preacher" class="form-control" placeholder="Ex: Pastor João Silva">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sermon-date">Data da Pregação</label>
+                                <input type="date" id="sermon-date" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sermon-video">Link do Vídeo (YouTube/Vimeo)</label>
+                                <input type="url" id="sermon-video" class="form-control" placeholder="https://youtube.com/...">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sermon-description">Descrição da Mensagem</label>
+                            <textarea id="sermon-description" class="form-control" placeholder="Descreva brevemente o conteúdo da pregação"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sermon-audio">Link do Áudio (opcional)</label>
+                            <input type="url" id="sermon-audio" class="form-control" placeholder="https://...">
+                        </div>
+                        
+                        <button class="btn btn-success" onclick="addSermon()">Adicionar Pregação</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Eventos -->
@@ -644,7 +749,7 @@ Domingo
             });
         });
 
-        // Navegação entre abas de eventos
+        // Navegação entre abas internas
         document.querySelectorAll('[data-tab]').forEach(tab => {
             tab.addEventListener('click', function() {
                 if(this.closest('.tab-container')) {
@@ -706,6 +811,23 @@ Domingo
 
         function saveAboutContent() {
             showAlert('Sobre a igreja salvo com sucesso!');
+        }
+
+        function addSermon() {
+            const title = document.getElementById('sermon-title').value;
+            const preacher = document.getElementById('sermon-preacher').value;
+            if (title && preacher) {
+                showAlert('Pregação adicionada com sucesso!');
+                // Limpar formulário
+                document.getElementById('sermon-title').value = '';
+                document.getElementById('sermon-preacher').value = '';
+                document.getElementById('sermon-date').value = '';
+                document.getElementById('sermon-video').value = '';
+                document.getElementById('sermon-description').value = '';
+                document.getElementById('sermon-audio').value = '';
+            } else {
+                showAlert('Por favor, preencha pelo menos o título e o pregador!', 'error');
+            }
         }
 
         function addEvent() {
