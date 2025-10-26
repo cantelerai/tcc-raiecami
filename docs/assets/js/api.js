@@ -5,11 +5,22 @@
     return;
   }
 
-  // Detecta erro "relation does not exist" (view ausente)
+  // ---------------------------
+  // Helpers
+  // ---------------------------
   function isMissingView(err) {
     if (!err) return false;
     const msg = (err.message || '').toLowerCase();
     return err.code === '42P01' || (msg.includes('relation') && msg.includes('does not exist'));
+  }
+  function isUniqueViolation(err) {
+    return err && (err.code === '23505' || /duplicate key|unique constraint/i.test(err.message || ''));
+  }
+  async function assertAuth() {
+    const { data, error } = await sb.auth.getSession();
+    if (error) throw error;
+    if (!data?.session) throw new Error('Não autenticado. Faça login para continuar.');
+    return data.session;
   }
 
   // ==========================
@@ -31,7 +42,7 @@
     return data || [];
   }
 
-  // CULTOS: tenta view; se faltar, cai na tabela
+  // CULTOS
   async function getFutureServices() {
     try {
       const { data, error } = await sb.from('future_services').select('*');
@@ -52,7 +63,7 @@
     }
   }
 
-  // EVENTOS: tenta view; se faltar, cai na tabela
+  // EVENTOS
   async function getFutureEvents() {
     try {
       const { data, error } = await sb.from('future_events').select('*');
@@ -73,6 +84,7 @@
     }
   }
 
+  // SERMÕES
   async function getRecentSermons(limit = 10) {
     const { data, error } = await sb
       .from('sermons')
@@ -84,7 +96,7 @@
     return data || [];
   }
 
-  // Contato (insert público)
+  // CONTATO
   async function createContact({ name, email, phone = null, category = 'visitante', message = null }) {
     const row = { name, email, phone, category, message, is_subscribed: true };
     const { error } = await sb.from('contacts').insert([row]);
@@ -92,11 +104,24 @@
     return true;
   }
 
-  // Inscrição em evento (insert público – RLS confere prazo/ativo)
+  // INSCRIÇÃO EM EVENTO
   async function createEventRegistration({ event_id, name, email, phone = null, birth_date = null, gender = null, notes = null }) {
-    const payload = { event_id, name, email, phone, birth_date, gender, notes };
+    const payload = {
+      event_id: Number(event_id),
+      name,
+      email,
+      phone: phone || null,
+      birth_date: birth_date || null,
+      gender: gender || null,
+      notes: (notes || '').trim() || null
+    };
     const { error } = await sb.from('event_registrations').insert([payload]);
-    if (error) throw error; // inclui erro de violação da unique (email por evento)
+    if (error) {
+      if (isUniqueViolation(error)) {
+        throw new Error('Este e-mail já está inscrito neste evento.');
+      }
+      throw error;
+    }
     return true;
   }
 
@@ -108,13 +133,11 @@
     if (error) throw error;
     return data.session;
   }
-
   async function signOut() {
     const { error } = await sb.auth.signOut();
     if (error) throw error;
     return true;
   }
-
   async function getSession() {
     const { data, error } = await sb.auth.getSession();
     if (error) throw error;
@@ -122,9 +145,11 @@
   }
 
   // ==========================
-  // ADMIN (requer usuário autenticado)
+  // ADMIN (usuário autenticado + admins.email)
   // ==========================
+  // Para o filtro da aba "Inscrições"
   async function adminListEvents() {
+    await assertAuth();
     const { data, error } = await sb
       .from('events')
       .select('id,title,event_date,is_active')
@@ -134,6 +159,7 @@
   }
 
   async function adminListRegistrations() {
+    await assertAuth();
     const { data, error } = await sb
       .from('event_registrations')
       .select('id,event_id,name,email,phone,birth_date,gender,notes,created_at,events(title,event_date)')
@@ -143,6 +169,7 @@
   }
 
   async function adminListDonations() {
+    await assertAuth();
     const { data, error } = await sb
       .from('donations')
       .select('id,donor_name,donor_email,amount,donation_type,status,donation_date,created_at')
@@ -151,7 +178,47 @@
     return data || [];
   }
 
-  // Exporta
+  // === ADMIN: eventos (gerenciar) ===
+  async function adminListAllEvents() {
+    await assertAuth();
+    const { data, error } = await sb
+      .from('events')
+      .select('id,title,event_date,event_time,end_time,location,description,is_active,requires_registration,registration_deadline,max_participants')
+      .order('event_date', { ascending: true });
+    if (error) throw error;
+    return data || [];
+  }
+
+  async function adminCreateEvent(payload) {
+    await assertAuth();
+    const clean = {
+      title: (payload.title || '').trim(),
+      event_date: payload.event_date,
+      event_time: payload.event_time || null,
+      end_time: payload.end_time || null,
+      location: (payload.location || '').trim() || null,
+      description: (payload.description || '').trim() || null,
+      is_active: !!payload.is_active,
+      requires_registration: !!payload.requires_registration,
+      registration_deadline: payload.registration_deadline || null,
+      max_participants: payload.max_participants != null && payload.max_participants !== ''
+        ? Number(payload.max_participants)
+        : null
+    };
+    if (!clean.title || !clean.event_date) throw new Error('Título e data são obrigatórios.');
+    const { error } = await sb.from('events').insert([clean]);
+    if (error) throw error;
+    return true;
+  }
+
+  async function adminDeleteEvent(eventId) {
+    await assertAuth();
+    const { error } = await sb.from('events').delete().eq('id', Number(eventId));
+    if (error) throw error;
+    return true;
+  }
+
+  // Exporta tudo
   window.API = {
     // público
     getSiteConfig,
@@ -169,5 +236,8 @@
     adminListEvents,
     adminListRegistrations,
     adminListDonations,
+    adminListAllEvents,
+    adminCreateEvent,
+    adminDeleteEvent,
   };
 })();

@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin — Igreja Assembleia</title>
 
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-
+  <!-- JS (ordem importa) -->
   <script src="assets/js/config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/js/supabaseClient.js"></script>
   <script src="assets/js/api.js"></script>
   <script src="assets/js/ui.js"></script>
-<script src="assets/js/main-admin.js" defer></script>
-
+  <script src="assets/js/main-admin.js" defer></script>
 </head>
 <body>
   <header>
@@ -38,7 +38,7 @@
     <!-- Login -->
     <section id="loginSection">
       <h2>Login administrativo</h2>
-      <p class="muted">Entre com e-mail e senha criados no Supabase (Authentication → Users).</p>
+      <p class="muted">Entre com e-mail e senha criados no Supabase (Authentication → Users). Esse e-mail deve existir também na tabela <code>admins</code> com <code>is_active = true</code>.</p>
       <div class="form-group"><input id="admin_email" type="email" placeholder="E-mail" autocomplete="username"/></div>
       <div class="form-group"><input id="admin_password" type="password" placeholder="Senha" autocomplete="current-password"/></div>
       <button id="btnLogin" class="btn"><i class="fas fa-right-to-bracket"></i> Entrar</button>
@@ -49,9 +49,10 @@
       <div style="display:flex; gap:10px; align-items:center; margin-bottom:12px;">
         <button id="tabRegs" class="admin-tab active">Inscrições</button>
         <button id="tabDon" class="admin-tab">Doações</button>
+        <button id="tabEv"  class="admin-tab">Eventos</button>
         <div style="margin-left:auto; display:flex; gap:8px;">
           <button id="btnRefresh" class="btn btn-outline"><i class="fas fa-rotate"></i> Atualizar</button>
-          <button id="btnLogout" class="btn btn-outline"><i class="fas fa-right-from-bracket"></i> Sair</button>
+          <button id="btnLogout"  class="btn btn-outline"><i class="fas fa-right-from-bracket"></i> Sair</button>
         </div>
       </div>
 
@@ -76,6 +77,59 @@
       <div id="tabDonContent" class="admin-tab-content">
         <h3>Doações</h3>
         <div id="donList"></div>
+      </div>
+
+      <!-- Eventos (gerenciar) -->
+      <div id="tabEvContent" class="admin-tab-content">
+        <h3>Novo evento</h3>
+        <form id="evForm" style="display:grid; gap:10px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items:end;">
+          <div>
+            <label class="muted" for="ev_title">Título</label>
+            <input id="ev_title" type="text" placeholder="Título do evento" required>
+          </div>
+          <div>
+            <label class="muted" for="ev_date">Data</label>
+            <input id="ev_date" type="date" required>
+          </div>
+          <div>
+            <label class="muted" for="ev_time">Início</label>
+            <input id="ev_time" type="time">
+          </div>
+          <div>
+            <label class="muted" for="ev_end_time">Fim</label>
+            <input id="ev_end_time" type="time">
+          </div>
+          <div>
+            <label class="muted" for="ev_location">Local</label>
+            <input id="ev_location" type="text" placeholder="Local">
+          </div>
+          <div style="grid-column: 1/-1;">
+            <label class="muted" for="ev_desc">Descrição</label>
+            <textarea id="ev_desc" rows="2" placeholder="Descrição (opcional)"></textarea>
+          </div>
+          <div>
+            <label class="muted" for="ev_deadline">Prazo de inscrição</label>
+            <input id="ev_deadline" type="date">
+          </div>
+          <div>
+            <label class="muted" for="ev_max">Vagas (máx.)</label>
+            <input id="ev_max" type="number" min="1" step="1" placeholder="ex.: 100">
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <input id="ev_requires_reg" type="checkbox">
+            <label for="ev_requires_reg">Requer inscrição</label>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <input id="ev_active" type="checkbox" checked>
+            <label for="ev_active">Ativo</label>
+          </div>
+          <div style="grid-column: 1/-1; display:flex; justify-content:flex-end;">
+            <button type="submit" class="btn"><i class="fas fa-plus"></i> Criar evento</button>
+          </div>
+        </form>
+
+        <h3 style="margin-top:16px;">Eventos cadastrados</h3>
+        <div id="evList" style="margin-top:10px;"></div>
       </div>
     </section>
   </main>
